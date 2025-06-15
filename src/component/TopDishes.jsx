@@ -213,17 +213,17 @@ const TopDishes = () => {
         Top dishes near you
       </Typography>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {dishes.map((dish) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={dish.id}>
+          <Grid size={{xs:2}} sm={6} md={4} lg={3} key={dish.id}>
             <Link to={`/dish/${dish.id}`} style={{ textDecoration: 'none' }}>
               <Card sx={{ borderRadius: 3, backgroundColor: '#111', color: 'white', '&:hover': { transform: 'scale(1.03)', transition: '0.3s' } }}>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="200"
                   image={dish.image}
                   alt={dish.name}
-                  sx={{ objectFit: 'cover', width: '100%', maxHeight: 140 }}
+                  sx={{ objectFit: 'cover', width: '100%', maxHeight: 180 }}
                 />
                 <CardContent>
                   <Typography variant="h6">{dish.name}</Typography>
