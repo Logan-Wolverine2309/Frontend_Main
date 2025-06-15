@@ -1,44 +1,45 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   Box, Typography, TextField, Button, Grid, Card,
   CardMedia, CardContent
 } from '@mui/material';
-import DemoRestaurants from './MockData'; // Ensure this path is correct
-import RestaurantDetailsPage from './RestaurantDetailsPage';
-import HomePage from './HomePage';
+import DemoRestaurants from './MockData'; // ✅ Ensure this path is correct
 
 const AddFood = () => {
-  const { id } = useParams();
-  const restaurant = DemoRestaurants.find(r => r.id.toString() === id);
+  // Assuming Admin only manages the first restaurant in the mock data
+  const restaurant = DemoRestaurants[0];
 
   const [dishes, setDishes] = useState([]);
   const [newDish, setNewDish] = useState({ name: '', description: '', price: '', image: '' });
 
+  useEffect(() => {
+    if (restaurant && restaurant.dishes) {
+      setDishes(restaurant.dishes);
+    }
+  }, []);
+
   const handleAddDish = () => {
+    if (!newDish.name || !newDish.price) return;
+
     const dishId = Date.now();
-    setDishes([...dishes, { ...newDish, id: dishId, restaurantId: restaurant?.id || null }]);
+    const updatedDish = {
+      ...newDish,
+      id: dishId,
+      restaurantId: restaurant.id
+    };
+
+    setDishes(prev => [...prev, updatedDish]);
     setNewDish({ name: '', description: '', price: '', image: '' });
   };
-
-  if (!restaurant) {
-    return (
-      <Box p={4}>
-        <Typography variant="h6" color="error">
-          Restaurant not found.
-        </Typography>
-      </Box>
-    );
-  }
 
   return (
     <Box p={4}>
       <Typography variant="h4">{restaurant.name}</Typography>
       <Typography variant="body1" mb={3}>{restaurant.description}</Typography>
 
-      <Typography variant="h6" mb={2}>Add New Dish</Typography>
+      <Typography variant="h6" mb={2}>Add a New Dish</Typography>
       <Grid container spacing={2}>
-        {['name', 'description', 'price', 'image'].map(field => (
+        {['name', 'price', 'description', 'image'].map(field => (
           <Grid item xs={12} sm={6} key={field}>
             <TextField
               fullWidth
@@ -49,28 +50,36 @@ const AddFood = () => {
           </Grid>
         ))}
         <Grid item xs={12}>
-          <Button variant="contained" onClick={handleAddDish}>Add Dish</Button>
+          <Button variant="contained" onClick={handleAddDish}>
+            Add Dish
+          </Button>
         </Grid>
       </Grid>
 
-      <Typography variant="h6" mt={4}>Current Dishes</Typography>
-      <Grid container spacing={2} mt={1}>
-        {dishes.map(dish => (
-          <Grid item key={dish.id} xs={12} sm={4}>
-            <Card>
-              <CardMedia component="img" height="140" image={dish.image} alt={dish.name} />
-              <CardContent>
-                <Typography variant="subtitle1">{dish.name}</Typography>
-                <Typography variant="body2">{dish.description}</Typography>
-                <Typography variant="body2">₹{dish.price}</Typography>
-              </CardContent>
-            </Card>
+      {dishes.length > 0 && (
+        <>
+          <Typography variant="h6" mt={4}>Existing Dishes</Typography>
+          <Grid container spacing={2} mt={1}>
+            {dishes.map(dish => (
+              <Grid item key={dish.id} xs={12} sm={4}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={dish.image || 'https://via.placeholder.com/140'}
+                    alt={dish.name}
+                  />
+                  <CardContent>
+                    <Typography variant="subtitle1">{dish.name}</Typography>
+                    <Typography variant="body2">{dish.description}</Typography>
+                    <Typography variant="body2">₹{dish.price}</Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-
-      <RestaurantDetailsPage />
-      <HomePage />
+        </>
+      )}
     </Box>
   );
 };
