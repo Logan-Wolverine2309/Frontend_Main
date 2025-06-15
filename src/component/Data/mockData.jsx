@@ -1,4 +1,4 @@
-export const demoRestaurants = [
+ const demoRestaurants = [
     {
         id: 1,
         name: 'The Greek Tavern',
@@ -36,6 +36,7 @@ export const demoRestaurants = [
         image: 'https://source.unsplash.com/400x300/?restaurant,pasta',
     },
 ];
+export default demoRestaurants;
 
 export const demoDishes = [
     {

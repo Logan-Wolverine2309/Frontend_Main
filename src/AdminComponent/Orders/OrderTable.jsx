@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -12,70 +12,241 @@ import {
   TableRow,
   Avatar,
   Typography,
-  Chip
+  Chip,
+  Snackbar,
+  Alert,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button
 } from '@mui/material';
 import { IoFastFoodSharp } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
 
-const orders = [
-  {
-    id: 1,
-    image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg",
-    customerEmail: "shruti18@gmail.com",
-    price: "₹250",
-    name: "Biryani",
-    ingredients: "Rice, Chicken, Spices",
-    status: "Completed",
+export default function OrderTable({ filter = "All" }) {
+  const [orders, setOrders] = useState([
+    {
+      id: 1,
+      image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg",
+      customerEmail: "shruti18@gmail.com",
+      price: "₹250",
+      name: "Biryani",
+      ingredients: "Rice, Chicken, Spices",
+      status: "Completed",
+    },
+    {
+      id: 2,
+      image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg",
+      customerEmail: "rahul02@gmail.com",
+      price: "₹180",
+      name: "Biryani",
+      ingredients: "Rice, Spices",
+      status: "Preparing",
+    },
+    {
+      id: 3,
+      image: "https://images.pexels.com/photos/17433352/pexels-photo-17433352/free-photo-of-combination-plate-with-maharstrian-food.jpeg",
+      customerEmail: "shruti@gmail.com",
+      price: "₹250",
+      name: "Biryani",
+      ingredients: "Rice, Chicken, Spices",
+      status: "Completed",
+    },
+    {
+      id: 4,
+      image: "https://images.pexels.com/photos/17433352/pexels-photo-17433352/free-photo-of-combination-plate-with-maharstrian-food.jpeg",
+      customerEmail: "rahul@gmail.com",
+      price: "₹180",
+      name: "Paneer Tikka",
+      ingredients: "",
+      status: "Cancelled",
+    },
+    {
+      id: 5,
+      image: "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg",
+      customerEmail: "shruti@gmail.com",
+      price: "₹250",
+      name: "Pizza",
+      ingredients: "Rice, Chicken, Spices",
+      status: "Completed",
+    },
+    {
+      id: 6,
+      image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+      customerEmail: "rahul@gmail.com",
+      price: "₹250",
+      name: "Paneer Tikka",
+      ingredients: "Extra cheese and Chicken",
+      status: "Preparing",
+    },
+     {
+    id: 7,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
   },
   {
-    id: 2,
-    image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg",
-    customerEmail: "rahul02@gmail.com",
-    price: "₹180",
-    name: "Biryani",
-    ingredients: "Rice, Spices",
-    status: "Preparing",
-  },
-  {
-    id: 3,
-    image: "https://images.pexels.com/photos/17433352/pexels-photo-17433352/free-photo-of-combination-plate-with-maharstrian-food.jpeg",
-    customerEmail: "shruti@gmail.com",
-    price: "₹250",
-    name: "Biryani",
-    ingredients: "Rice, Chicken, Spices",
-    status: "Completed",
-  },
-  {
-    id: 4,
-    image: "https://images.pexels.com/photos/17433352/pexels-photo-17433352/free-photo-of-combination-plate-with-maharstrian-food.jpeg",
-    customerEmail: "rahul@gmail.com",
-    price: "₹180",
-    name: "Paneer Tikka",
-    ingredients: "",
+    id: 8,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
     status: "Cancelled",
   },
   {
-    id: 5,
-    image: "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg",
-    customerEmail: "shruti@gmail.com",
-    price: "₹250",
-    name: "Pizza",
-    ingredients: "Rice, Chicken, Spices",
+    id: 9,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
     status: "Completed",
   },
-  {
-    id: 6,
+   {
+    id: 10,
     image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
-    customerEmail: "rahul@gmail.com",
-    price: "₹250",
-    name: "Paneer Tikka",
-    ingredients: "Extra Spices and Paneer",
-    status: "Preparing",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
   },
-];
+  {
+    id: 11,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
+    status: "Cancelled",
+  },
+  {
+    id: 12,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
+    status: "Completed",
+  },
+   {
+    id: 13,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
+  },
+  {
+    id: 14,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
+    status: "Cancelled",
+  },
+  {
+    id: 15,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
+    status: "Completed",
+  },
+   {
+    id: 16,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
+  },
+  {
+    id: 17,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
+    status: "Cancelled",
+  },
+  {
+    id: 18,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
+    status: "Completed",
+  },
+   {
+    id: 19,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
+  },
+  {
+    id: 20,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
+    status: "Cancelled",
+  },
+  {
+    id: 21,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
+    status: "Completed",
+  },
+   {
+    id: 22,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "jit@gmail.com",
+    price: "₹300",
+    name: "chicken Tikka",
+    ingredients: "Extra Spices and Chicken",
+    status: "preparing",
+  },
+  {
+    id: 23,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "ripan@gmail.com",
+    price: "₹300",
+    name: "Chicken Biryani",
+    ingredients: "Extra Spices and Chicken",
+    status: "Cancelled",
+  },
+  {
+    id: 24,
+    image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
+    customerEmail: "torsha@gmail.com",
+    price: "₹300",
+    name: "whooper Burger",
+    ingredients: "Extra cheese and Chicken",
+    status: "Completed",
+  }
+  ]);
 
-export default function OrderTable({ filter = "All" }) {
-  const navigate = useNavigate();
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
@@ -88,6 +259,30 @@ export default function OrderTable({ filter = "All" }) {
       default:
         return "default";
     }
+  };
+
+  const handleStatusClick = (order) => {
+    if (order.status === "Preparing") {
+      setSelectedOrder(order);
+      setDialogOpen(true);
+    }
+  };
+
+  const handleConfirm = () => {
+    setOrders((prev) =>
+      prev.map((order) =>
+        order.id === selectedOrder.id
+          ? { ...order, status: "Completed" }
+          : order
+      )
+    );
+    setDialogOpen(false);
+    setSnackbarOpen(true);
+    setSelectedOrder(null);
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   const filteredOrders = orders.filter((order) => {
@@ -133,12 +328,7 @@ export default function OrderTable({ filter = "All" }) {
                 </TableRow>
               ) : (
                 filteredOrders.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    hover
-                    sx={{ cursor: 'pointer' }}
-                    onClick={() => navigate(`/orders/${row.id}`)}
-                  >
+                  <TableRow key={row.id} hover>
                     <TableCell>{row.id}</TableCell>
                     <TableCell>
                       <Avatar src={row.image} alt={row.name} variant="rounded" />
@@ -148,7 +338,12 @@ export default function OrderTable({ filter = "All" }) {
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.ingredients || '-'}</TableCell>
                     <TableCell>
-                      <Chip label={row.status} color={getStatusColor(row.status)} />
+                      <Chip
+                        label={row.status}
+                        color={getStatusColor(row.status)}
+                        clickable={row.status === "Preparing"}
+                        onClick={() => handleStatusClick(row)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))
@@ -157,6 +352,34 @@ export default function OrderTable({ filter = "All" }) {
           </Table>
         </TableContainer>
       </Card>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <DialogTitle>Confirm Status Change</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to mark this order as <strong>Completed</strong>?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={handleConfirm} autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Snackbar */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity="success" sx={{ width: '100%' }}>
+          Order status updated to "Completed"
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
