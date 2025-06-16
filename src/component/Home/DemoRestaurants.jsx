@@ -7,7 +7,7 @@ const demoRestaurants = [
         location: "Kolkata",
         image:
             "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: " ₹400 "
+        price: 400
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ const demoRestaurants = [
         location: "Hyderabad",
         image:
             "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹₹ (Approx. ₹800 for two)"
+        price: 800
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ const demoRestaurants = [
         location: "Delhi",
         image:
             "https://images.pexels.com/photos/17050759/pexels-photo-17050759/free-photo-of-curry-meat-based-dishes-served-on-white-plates.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 4,
@@ -37,7 +37,7 @@ const demoRestaurants = [
         location: "Mumbai",
         image:
             "https://images.pexels.com/photos/6544376/pexels-photo-6544376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 5,
@@ -47,7 +47,7 @@ const demoRestaurants = [
         location: "Chennai",
         image:
             "https://images.pexels.com/photos/30700761/pexels-photo-30700761/free-photo-of-delicious-japanese-curry-dish-with-rice.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 6,
@@ -57,7 +57,7 @@ const demoRestaurants = [
         location: "Bangalore",
         image:
             "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 7,
@@ -67,7 +67,7 @@ const demoRestaurants = [
         location: "Kochi",
         image:
             "https://images.pexels.com/photos/566345/pexels-photo-566345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹₹ (Approx. ₹800 for two)"
+        price: 800
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ const demoRestaurants = [
         location: "Ahmedabad",
         image:
             "https://images.pexels.com/photos/32551700/pexels-photo-32551700/free-photo-of-chocolate-and-raspberry-dessert-close-up.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 9,
@@ -87,7 +87,7 @@ const demoRestaurants = [
         location: "Pune",
         image:
             "https://images.pexels.com/photos/4331490/pexels-photo-4331490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 10,
@@ -97,7 +97,7 @@ const demoRestaurants = [
         location: "Jaipur",
         image:
             "https://images.pexels.com/photos/19834446/pexels-photo-19834446/free-photo-of-soup-with-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 11,
@@ -107,7 +107,7 @@ const demoRestaurants = [
         location: "Lucknow",
         image:
             "https://images.pexels.com/photos/941869/pexels-photo-941869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹₹ (Approx. ₹800 for two)"
+        price: 800
     },
     {
         id: 12,
@@ -117,7 +117,7 @@ const demoRestaurants = [
         location: "Goa",
         image:
             "https://images.pexels.com/photos/8818667/pexels-photo-8818667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹₹ (Approx. ₹800 for two)"
+        price: 800
     },
     {
         id: 13,
@@ -127,7 +127,7 @@ const demoRestaurants = [
         location: "Varanasi",
         image:
             "https://images.pexels.com/photos/13063307/pexels-photo-13063307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 14,
@@ -137,7 +137,7 @@ const demoRestaurants = [
         location: "Dehradun",
         image:
             "https://images.pexels.com/photos/15082977/pexels-photo-15082977/free-photo-of-two-glasses-of-milk-with-cinnamon-and-nuts.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 15,
@@ -147,7 +147,7 @@ const demoRestaurants = [
         location: "Chandigarh",
         image:
             "https://images.pexels.com/photos/5695615/pexels-photo-5695615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 16,
@@ -157,7 +157,7 @@ const demoRestaurants = [
         location: "Mysore",
         image:
             "https://images.pexels.com/photos/9809033/pexels-photo-9809033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 17,
@@ -167,7 +167,7 @@ const demoRestaurants = [
         location: "Indore",
         image:
             "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 18,
@@ -177,7 +177,7 @@ const demoRestaurants = [
         location: "Surat",
         image:
             "https://images.pexels.com/photos/28125427/pexels-photo-28125427/free-photo-of-naan-roti-tarkari-everest-tandoori-kitchen.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 19,
@@ -187,7 +187,7 @@ const demoRestaurants = [
         location: "Agra",
         image:
             "https://images.pexels.com/photos/9609843/pexels-photo-9609843.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 20,
@@ -197,7 +197,7 @@ const demoRestaurants = [
         location: "Vadodara",
         image:
             "https://images.pexels.com/photos/27254878/pexels-photo-27254878/free-photo-of-vegan-curry-masala.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 21,
@@ -207,7 +207,7 @@ const demoRestaurants = [
         location: "Ranchi",
         image:
             "https://images.pexels.com/photos/18510422/pexels-photo-18510422/free-photo-of-a-yellow-bowl-filled-with-rice-and-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 22,
@@ -217,7 +217,7 @@ const demoRestaurants = [
         location: "Bhubaneswar",
         image:
             "https://images.pexels.com/photos/5827620/pexels-photo-5827620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 23,
@@ -227,7 +227,7 @@ const demoRestaurants = [
         location: "Patna",
         image:
             "https://images.pexels.com/photos/28674705/pexels-photo-28674705/free-photo-of-indian-dal-and-rice-in-traditional-utensils.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 24,
@@ -237,7 +237,7 @@ const demoRestaurants = [
         location: "Guwahati",
         image:
             "https://images.pexels.com/photos/20408465/pexels-photo-20408465/free-photo-of-bowl-of-food-and-spices.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 25,
@@ -247,7 +247,7 @@ const demoRestaurants = [
         location: "Shillong",
         image:
             "https://images.pexels.com/photos/31653131/pexels-photo-31653131/free-photo-of-delicious-japanese-curry-with-white-rice.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 26,
@@ -257,7 +257,7 @@ const demoRestaurants = [
         location: "Imphal",
         image:
             "https://images.pexels.com/photos/674574/pexels-photo-674574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 27,
@@ -267,7 +267,7 @@ const demoRestaurants = [
         location: "Aizawl",
         image:
             "https://images.pexels.com/photos/5827620/pexels-photo-5827620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 28,
@@ -277,7 +277,7 @@ const demoRestaurants = [
         location: "Gangtok",
         image:
             "https://images.pexels.com/photos/20408465/pexels-photo-20408465/free-photo-of-bowl-of-food-and-spices.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 29,
@@ -287,7 +287,7 @@ const demoRestaurants = [
         location: "Kohima",
         image:
             "https://images.pexels.com/photos/20408465/pexels-photo-20408465/free-photo-of-bowl-of-food-and-spices.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 30,
@@ -297,7 +297,7 @@ const demoRestaurants = [
         location: "Itanagar",
         image:
             "https://images.pexels.com/photos/28674705/pexels-photo-28674705/free-photo-of-indian-dal-and-rice-in-traditional-utensils.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
     {
         id: 31,
@@ -307,7 +307,7 @@ const demoRestaurants = [
         location: "Agartala",
         image:
             "https://images.pexels.com/photos/1640805/pexels-photo-1640805.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 32,
@@ -317,7 +317,7 @@ const demoRestaurants = [
         location: "Dimapur",
         image:
             "https://images.pexels.com/photos/1640806/pexels-photo-1640806.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 33,
@@ -327,7 +327,7 @@ const demoRestaurants = [
         location: "Kohima",
         image:
             "https://images.pexels.com/photos/1640807/pexels-photo-1640807.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 34,
@@ -337,7 +337,7 @@ const demoRestaurants = [
         location: "Gangtok",
         image:
             "https://images.pexels.com/photos/1640808/pexels-photo-1640808.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 35,
@@ -347,7 +347,7 @@ const demoRestaurants = [
         location: "Aizawl",
         image:
             "https://images.pexels.com/photos/1640809/pexels-photo-1640809.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹₹ (Approx. ₹400 for two)"
+        price: 400
     },
     {
         id: 36,
@@ -357,7 +357,7 @@ const demoRestaurants = [
         location: "Imphal",
         image:
             "https://images.pexels.com/photos/1640810/pexels-photo-1640810.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price: "₹ (Approx. ₹200 for two)"
+        price: 200
     },
 ];
 

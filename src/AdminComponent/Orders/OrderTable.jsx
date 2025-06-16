@@ -1,32 +1,28 @@
-import React, { useState } from 'react';
 import {
+  Avatar,
   Box,
+  Button,
   Card,
-  CardHeader,
-  Paper,
+  CardContent,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Avatar,
-  Typography,
-  Chip,
-  Snackbar,
-  Alert,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button
-} from '@mui/material';
-import { IoFastFoodSharp } from "react-icons/io5";
+  Typography
+} from "@mui/material";
+import { useState } from "react";
 
-export default function OrderTable({ filter = "All" }) {
-  const [orders, setOrders] = useState([
-    {
+const ordersData = [
+  {
       id: 1,
       image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573/free-photo-of-rice-and-chicken-meal-on-the-plate.jpeg",
       customerEmail: "shruti18@gmail.com",
@@ -242,13 +238,39 @@ export default function OrderTable({ filter = "All" }) {
     ingredients: "Extra cheese and Chicken",
     status: "Completed",
   }
-  ]);
+];
 
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+const OrderTable = ({ filter }) => {
+  const [orders, setOrders] = useState(ordersData);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  const getStatusColor = (status) => {
+  const handleChipClick = (id) => {
+    setSelectedOrderId(id);
+    setDialogOpen(true);
+  };
+
+  const confirmStatusChange = () => {
+    setOrders((prev) =>
+      prev.map((order) =>
+        order.id === selectedOrderId
+          ? { ...order, status: "Completed" }
+          : order
+      )
+    );
+    setDialogOpen(false);
+    setSnackbarOpen(true);
+  };
+
+  const filteredOrders =
+    filter === "All"
+      ? orders
+      : orders.filter(
+          (order) => order.status.toLowerCase() === filter.toLowerCase()
+        );
+
+  const getChipColor = (status) => {
     switch (status.toLowerCase()) {
       case "completed":
         return "success";
@@ -261,109 +283,68 @@ export default function OrderTable({ filter = "All" }) {
     }
   };
 
-  const handleStatusClick = (order) => {
-    if (order.status === "Preparing") {
-      setSelectedOrder(order);
-      setDialogOpen(true);
-    }
-  };
-
-  const handleConfirm = () => {
-    setOrders((prev) =>
-      prev.map((order) =>
-        order.id === selectedOrder.id
-          ? { ...order, status: "Completed" }
-          : order
-      )
-    );
-    setDialogOpen(false);
-    setSnackbarOpen(true);
-    setSelectedOrder(null);
-  };
-
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false);
-  };
-
-  const filteredOrders = orders.filter((order) => {
-    if (filter === "All") return true;
-    if (filter === "Pending") return order.status.toLowerCase() === "preparing";
-    if (filter === "Completed") return order.status.toLowerCase() === "completed";
-    if (filter === "Cancelled") return order.status.toLowerCase() === "cancelled";
-    return true;
-  });
-
   return (
-    <Box className="p-4">
-      <Card elevation={3}>
-        <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: '#f50057' }}>
-              <IoFastFoodSharp />
-            </Avatar>
-          }
-          title={<Typography variant="h6">All Orders</Typography>}
-          sx={{ pt: 2, pb: 2 }}
-        />
-
-        <TableContainer component={Paper} elevation={0}>
-          <Table sx={{ minWidth: 750 }} aria-label="order table">
-            <TableHead>
-              <TableRow sx={{ backgroundColor: '#f50057' }}>
-                <TableCell sx={{ color: '#fff' }}>ID</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Image</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Customer Email</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Price</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Name</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Ingredients</TableCell>
-                <TableCell sx={{ color: '#fff' }}>Status</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredOrders.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={7} align="center">
-                    No orders found for selected status.
-                  </TableCell>
+    <Box sx={{ mt: 2 }}>
+      <Card sx={{ backgroundColor: "#111", color: "white" }}>
+        <CardContent>
+          <Typography variant="h6" gutterBottom color="white">
+            All Orders
+          </Typography>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: "#f50057" }}>
+                  <TableCell sx={{ color: "white" }}>ID</TableCell>
+                  <TableCell sx={{ color: "white" }}>Image</TableCell>
+                  <TableCell sx={{ color: "white" }}>Customer Email</TableCell>
+                  <TableCell sx={{ color: "white" }}>Price</TableCell>
+                  <TableCell sx={{ color: "white" }}>Name</TableCell>
+                  <TableCell sx={{ color: "white" }}>Ingredients</TableCell>
+                  <TableCell sx={{ color: "white" }}>Status</TableCell>
                 </TableRow>
-              ) : (
-                filteredOrders.map((row) => (
-                  <TableRow key={row.id} hover>
-                    <TableCell>{row.id}</TableCell>
+              </TableHead>
+              <TableBody>
+                {filteredOrders.map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell sx={{ color: "white" }}>{order.id}</TableCell>
                     <TableCell>
-                      <Avatar src={row.image} alt={row.name} variant="rounded" />
+                      <Avatar src={order.image} alt={order.name} />
                     </TableCell>
-                    <TableCell>{row.customerEmail}</TableCell>
-                    <TableCell>{row.price}</TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.ingredients || '-'}</TableCell>
+                    <TableCell sx={{ color: "white" }}>{order.email}</TableCell>
+                    <TableCell sx={{ color: "white" }}>{order.price}</TableCell>
+                    <TableCell sx={{ color: "white" }}>{order.name}</TableCell>
+                    <TableCell sx={{ color: "white" }}>
+                      {order.ingredients}
+                    </TableCell>
                     <TableCell>
                       <Chip
-                        label={row.status}
-                        color={getStatusColor(row.status)}
-                        clickable={row.status === "Preparing"}
-                        onClick={() => handleStatusClick(row)}
+                        label={order.status}
+                        color={getChipColor(order.status)}
+                        onClick={() =>
+                          order.status !== "Completed" && handleChipClick(order.id)
+                        }
+                        sx={{ cursor: "pointer" }}
                       />
                     </TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </CardContent>
       </Card>
 
-      {/* Confirmation Dialog */}
+      {/* Confirm Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-        <DialogTitle>Confirm Status Change</DialogTitle>
+        <DialogTitle>Mark as Completed?</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to mark this order as <strong>Completed</strong>?
+            Are you sure you want to change the order status to <b>Completed</b>?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleConfirm} autoFocus>
+          <Button onClick={confirmStatusChange} variant="contained">
             Confirm
           </Button>
         </DialogActions>
@@ -373,13 +354,11 @@ export default function OrderTable({ filter = "All" }) {
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert severity="success" sx={{ width: '100%' }}>
-          Order status updated to "Completed"
-        </Alert>
-      </Snackbar>
+        onClose={() => setSnackbarOpen(false)}
+        message="Order marked as Completed"
+      />
     </Box>
   );
-}
+};
+
+export default OrderTable;

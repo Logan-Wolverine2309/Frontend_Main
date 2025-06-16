@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import {  demoDishes } from '../data/mockData';
+import { demoDishes } from '../data/mockData';
 import demoRestaurants from './Home/DemoRestaurants';
 
 const RestaurantPage = () => {
@@ -102,7 +102,7 @@ const RestaurantPage = () => {
 
       <Grid container spacing={3}>
         {Object.values(groupedDishes).length === 0 ? (
-          <Grid size={{xs:12}}>
+          <Grid size={{ xs: 12 }}>
             <Typography variant="h6" color="text.secondary" align="center">
               No dishes available for this restaurant.
             </Typography>

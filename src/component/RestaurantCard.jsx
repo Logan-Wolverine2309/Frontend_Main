@@ -1,6 +1,9 @@
 import React from "react";
 
 const RestaurantCard = ({ restaurant, onAddToCart }) => {
+  // Calculate total price of all dishes
+  const totalPrice = restaurant.dishes.reduce((sum, dish) => sum + dish.price, 0);
+
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden w-full max-w-xs">
       <img
@@ -15,6 +18,11 @@ const RestaurantCard = ({ restaurant, onAddToCart }) => {
           {restaurant.rating}
           <span className="mx-1">•</span>
           {restaurant.location}
+        </p>
+
+        {/* Show total price of all dishes */}
+        <p className="text-sm text-gray-700 mt-1">
+          Total Price: <span className="font-semibold">₹{totalPrice}</span>
         </p>
 
         <div className="mt-3 space-y-1">
