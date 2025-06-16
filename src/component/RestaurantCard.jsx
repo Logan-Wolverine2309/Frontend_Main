@@ -1,23 +1,40 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const RestaurantCard = ({ item }) => {
-  const navigate = useNavigate();
+const RestaurantCard = ({ restaurant, onAddToCart }) => {
   return (
-    <div
-      onClick={() => navigate(`/restaurant/${item.id}`)}
-      className="cursor-pointer border rounded-lg overflow-hidden hover:shadow-lg transition"
-    >
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden w-full max-w-xs">
       <img
-        src={item.image}
-        alt={item.name}
-        className="w-full h-40 object-cover"
+        src={restaurant.image}
+        alt={restaurant.name}
+        className="w-full h-36 object-cover"
       />
       <div className="p-4">
-        <h3 className="text-lg font-semibold">{item.name}</h3>
-        <p className="text-sm text-gray-600">{item.description}</p>
-        <p className="text-sm text-gray-500">
-          ⭐ {item.rating} • 📍 {item.location}
+        <h2 className="text-lg font-bold">{restaurant.name}</h2>
+        <p className="text-sm text-gray-500 flex items-center gap-1">
+          <span className="text-green-600 text-base">★</span>
+          {restaurant.rating}
+          <span className="mx-1">•</span>
+          {restaurant.location}
         </p>
+
+        <div className="mt-3 space-y-1">
+          {restaurant.dishes.map((dish, i) => (
+            <div
+              key={i}
+              className="flex justify-between text-sm font-medium text-gray-800"
+            >
+              <span>{dish.name}</span>
+              <span>₹{dish.price}</span>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={() => onAddToCart(restaurant.id)}
+          className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
