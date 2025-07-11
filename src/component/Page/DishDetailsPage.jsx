@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   Box, Typography, Card, CardMedia, CardContent,
@@ -7,7 +7,7 @@ import {
 
 
 
-import demoRestaurants, { demoDishes } from '../data/mockData';
+import demoRestaurants, { demoDishes } from '../Data/mockData';
 import { useCart } from '../Context/CartContext';
 
 const DishDetailsPage = () => {

@@ -232,7 +232,7 @@ const ordersData = [
   {
     id: 24,
     image: "https://images.pexels.com/photos/20371512/pexels-photo-20371512/free-photo-of-top-view-of-a-plate-with-roasted-chicken.jpeg",
-    email: "torsha@gmail.com",
+    customerEmail: "torsha@gmail.com",
     price: "₹300",
     name: "whooper Burger",
     ingredients: "Extra cheese and Chicken",
@@ -310,7 +310,7 @@ const OrderTable = ({ filter }) => {
                     <TableCell>
                       <Avatar src={order.image} alt={order.name} />
                     </TableCell>
-                    <TableCell sx={{ color: "white" }}>{order.customerEmail || order.email}</TableCell>
+                    <TableCell sx={{ color: "white" }}>{order.email}</TableCell>
                     <TableCell sx={{ color: "white" }}>{order.price}</TableCell>
                     <TableCell sx={{ color: "white" }}>{order.name}</TableCell>
                     <TableCell sx={{ color: "white" }}>
